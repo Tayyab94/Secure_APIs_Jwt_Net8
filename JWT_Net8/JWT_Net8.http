@@ -1,0 +1,6 @@
+@JWT_Net8_HostAddress = http://localhost:5093
+
+GET {{JWT_Net8_HostAddress}}/weatherforecast/
+Accept: application/json
+
+###
