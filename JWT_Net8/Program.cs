@@ -2,6 +2,7 @@ using JWT_Net8.Extensions;
 using JWT_Net8.Models.Infrastructire;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.IdentityModel.Tokens;
+using System.Security.Claims;
 using System.Text;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -26,7 +27,8 @@ builder.Services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme)
             IssuerSigningKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(builder.Configuration["jwt:secretKey"]!)),
             ValidIssuer = builder.Configuration["jwt:Issure"].ToString(),
             ValidAudience = builder.Configuration["jwt:Audience"].ToString(),
-            ClockSkew = TimeSpan.Zero
+            ClockSkew = TimeSpan.Zero,
+            RoleClaimType= ClaimTypes.Role,// Ensure this matches the role claim in the token
         };
     });
 
